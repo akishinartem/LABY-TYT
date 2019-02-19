@@ -1,0 +1,129 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+typedef struct
+{
+	int raz;
+	char adr[100];
+	int cen;
+	char kom[100];
+}KV;
+
+void out(FILE *f, KV *mp, int size)
+{
+	fwrite(&size, sizeof(int), 1, f);
+	fwrite(mp, sizeof(KV), size, f);
+}
+
+void in(FILE *f, KV *mp, int *size)
+{
+	fread(size, sizeof(int), 1, f);
+	fread(mp, sizeof(KV), *size, f);
+}
+
+KV kva()
+{
+	KV mp;
+	printf("\nFlat space: ");
+	scanf("%d",&mp.raz);
+	printf("\nAdress: ");
+	scanf("%s",&mp.adr);
+	printf("\nCena: ");
+	scanf("%d",&mp.cen);
+	printf("\nComment: ");
+	scanf("%s",&mp.kom);
+	return mp;
+}
+
+void show(KV *mp, int size)
+{
+	int i;
+	for(i = 0; i < size; i++)
+	{
+		printf("\nFlat space(m^2): %d \nAdress: %s \nPrice: %d \nInfo: %s \n", mp[i].raz, mp[i].adr, mp[i].cen, mp[i].kom);
+	}
+}
+
+void find(KV *mp, int size)
+{
+	char adr[100];
+	int cen,raz;
+	printf("\nFlat space:");
+	scanf("%d",&raz);
+    printf("\nFlat price:");
+    scanf("%d",&cen);
+    printf("\nFlat adress:");
+    scanf("%s",&adr);
+    for(int i = 0; i < size; i++)
+	{
+        if(mp[i].raz==raz||cen==mp[i].cen||!strcmp(mp[i].adr,adr))
+        printf("\n po vashemy zaprosy naideno: \nflat space(m^2): %d \nAdress: %s \nPrice: %d \nInfo: %s \n", mp[i].raz, mp[i].adr, mp[i].cen,mp[i].kom);
+	}
+}
+
+int adr(const void *f, const void *s)
+{
+	return strcmp(((KV*)f)->adr, ((KV*)s)->adr) > 0;
+}
+
+int cen(const void *f, const void *s)
+{
+	return (((KV*)f)->cen - ((KV*)s)->cen < 0);
+}
+
+int main()
+{
+	KV mp[100];
+	int size = 0, i;
+	FILE *f = fopen("f.txt", "rb");
+	if(f)
+	{
+		in(f, mp, &size);
+		fclose(f);
+	}
+	f = fopen("f.txt", "wb");
+	while(1)
+	{
+		printf("\n1 add\n2 edit\n3 delete\n4 sort by adress\n5 sort by price\n6 show all\n7 find\n0 exit\n");
+		scanf("%d", &i);
+		switch(i)
+		{
+		case 1:
+			mp[size] = kva();
+			size++;
+			break;
+		case 2:
+			printf("\ni: ");
+			scanf("%d", &i);
+			mp[i] = kva();
+			break;
+		case 3:
+			printf("\ni: ");
+			scanf("%d", &i);
+			--size;
+			for(; i < size; i++)
+				mp[i] = mp[i+1];
+			break;
+		case 4:
+			qsort(mp, size, sizeof(KV), adr);
+			show(mp, size);
+			break;
+		case 5:
+			qsort(mp, size, sizeof(KV), cen);
+			show(mp, size);
+			break;
+		case 6:
+			show(mp, size);
+			break;
+		case 7:
+			find(mp, size);
+			break;
+		case 0:
+			out(f, mp, size);
+			fclose(f);
+			return 0;
+		}
+	}
+}
+
