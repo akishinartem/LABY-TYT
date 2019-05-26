@@ -1,11 +1,14 @@
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdio.h> 
 #include <stdlib.h> 
+
 #define YES 1
 #define NO 0
 #define MAXLEN 1000 
 #define NLINES 100
+
 int main(void)
 {
 	char str[32];
