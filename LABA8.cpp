@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #define YES	1
 #define NO	0
 #define MAXLINE	1000
+
 void process_line (char buffer []);
 
 void main (void)
