@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+
 #define LETTER 1
 #define NOT_THE_LETTER 0
 #define MAXLEN 1000
