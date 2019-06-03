@@ -1,11 +1,7 @@
 #include  <stdio.h>
 void main() {
-	float a;
-	float s;
-	float x;
-	int n;
-	int i;
-	int sign;
+	float a, s, x;
+	int n, i, sign;
 
 	printf("n=");
 	scanf("%d", &n);
@@ -23,6 +19,5 @@ void main() {
 		a = (a*x);
 		i = i + 1;
 	}
-
 	printf("s = %f\n", s);
 }
