@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct
-{
+typedef struct {
 	int raz;
 	char adr[100];
 	int cen;
