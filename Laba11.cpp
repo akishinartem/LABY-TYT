@@ -6,7 +6,7 @@
 #define NOT_THE_LETTER 0
 #define MAXLEN 1000
 
-int main(void)
+int main()
 {
 	HANDLE hStdout;
 	FILE *fp;
