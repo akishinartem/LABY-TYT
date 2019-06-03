@@ -1,6 +1,5 @@
 #include <stdio.h>
-void main(void) {
-
+void main() {
 	int V1 = 0;
 	int V2 = 0;
 	int V = 0;
