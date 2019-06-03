@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 void main() {
 	int massive[10];
 	int i;
