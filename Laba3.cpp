@@ -3,6 +3,7 @@
 #define NO 0 
 
 void main() {
+	
 	int c;
 	int flag = NO;
 	int cnt = 0;
